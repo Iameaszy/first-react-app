@@ -3,7 +3,12 @@ import './App.css';
 
 class App extends Component {
   render() {
-    return <h1>Hello world</h1>
+    return (
+      <div>
+        <h1>Hello world</h1>
+        <p>Welcome to react...</p>
+      </div>
+    )
   }
 }
 
