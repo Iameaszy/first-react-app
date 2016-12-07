@@ -20,12 +20,15 @@ class App extends Component {
         <h1>Hello world</h1>
         <p>Welcome to react...</p>
         <p>{name}, react seems cool...</p>
-        <input type="text" onChange={this.update.bind(this)}/>
+        <Widget update={this.update.bind(this)}></Widget>
         <p>I am {this.state.age} years old</p>
       </div>
     )
   }
 }
+
+const Widget = (props) =>
+  <input type="text" onChange={props.update}/>
 
 App.propTypes = {
   name: PropTypes.string.isRequired
