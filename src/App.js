@@ -17,7 +17,7 @@ class App extends Component {
     const name = this.props.name;
     return (
       <div>
-        <h1>Hello world</h1>
+        <Greeting>Hello world <Heart /></Greeting>
         <p>Welcome to react...</p>
         <p>{name}, react seems cool...</p>
         <Widget update={this.update.bind(this)}></Widget>
@@ -26,6 +26,9 @@ class App extends Component {
     )
   }
 }
+
+const Greeting = (props) => <h1>{props.children}</h1>
+const Heart = () => <span>&hearts;</span>
 
 const Widget = (props) =>
   <input type="text" onChange={props.update}/>
