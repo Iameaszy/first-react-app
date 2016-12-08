@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import './App.css';
+import People from './People';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       age: 22,
-      currentEvent: '----'
+      currentEvent: '----',
+      people: [{name: "fayi", age: 22}, {name: "Anastasiya", age: 20}]
     }
     this.update = this.update.bind(this)
   }
@@ -39,6 +41,11 @@ class App extends Component {
             onBlur={this.update}
             onKeyPress={this.update}/>
           <h1>{this.state.currentEvent}</h1>
+        </div>
+
+        <div>
+          <h3>List of people</h3>
+          <People people={this.state.people} />
         </div>
       </div>
     )
