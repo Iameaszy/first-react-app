@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 import People from './People';
 
@@ -7,6 +8,7 @@ class App extends Component {
     super()
     this.state = {
       age: 22,
+      sex: 'male',
       currentEvent: '----',
       people: [{name: "fayi", age: 22}, {name: "Anastasiya", age: 20}]
     }
@@ -14,7 +16,8 @@ class App extends Component {
   }
 
   update(e) {
-    this.setState({age: e.target.value})
+    this.setState({age: ReactDOM.findDOMNode(this.refs.age.refs.inp).value})
+    this.setState({sex: ReactDOM.findDOMNode(this.refs.sex.refs.inp).value})
     this.setState({currentEvent: e.type})
   }
 
@@ -26,8 +29,9 @@ class App extends Component {
           <Greeting>Hello world <Heart /></Greeting>
           <p>Welcome to react...</p>
           <p>{name}, react seems cool...</p>
-          <Widget update={this.update}></Widget>
-          <p>I am {this.state.age} years old</p>
+          Age: <Widget ref="age" update={this.update}></Widget>
+          Sex: <Widget ref="sex" update={this.update}></Widget>
+        <p>I am {this.state.age} years old. My sex is {this.state.sex}</p>
         </div>
 
         <hr/>
@@ -55,8 +59,14 @@ class App extends Component {
 const Greeting = (props) => <h1>{props.children}</h1>
 const Heart = () => <span>&hearts;</span>
 
-const Widget = (props) =>
-  <input type="text" onChange={props.update}/>
+class Widget extends Component {
+  render() {
+    return (
+      <input ref="inp" type="text" onChange={this.props.update}/>
+    );
+  }
+}
+
 
 App.propTypes = {
   name: PropTypes.string.isRequired
